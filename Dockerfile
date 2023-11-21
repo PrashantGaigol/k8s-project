@@ -1,17 +1,24 @@
-FROM centos:latest
-
-LABEL maintainer="prashantgaigol21@gmail.com"
-RUN yum makecache
-RUN yum install -y httpd zip unzip \
-    && yum clean all \
-    && rm -rf /var/cache/yum
-
+FROM  centos:latest
+MAINTAINER prashantgaigol21@gmail.com
+RUN yum install -y httpd zip unzip
 COPY photogenic.zip /var/www/html/
-
 WORKDIR /var/www/html/
-RUN unzip photogenic.zip \
-    && cp -rvf photogenic/* . \
-    && rm -rf photogenic photogenic.zip
-
-EXPOSE 80
+RUN unzip photogenic.zip
+RUN cp -rvf photogenic/* .
+RUN rm -rf photogenic photogenic.zip
 CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
+EXPOSE 80 22
+
+
+# FROM  centos:latest
+# MAINTAINER vikashashoke@gmail.com
+# RUN yum install -y httpd \
+#  zip\
+#  unzip
+#  ADD https://www.free-css.com/assets/files/free-css-templates/download/page265/shine.zip /var/www/html/
+#  WORKDIR /var/www/html/
+#  RUN unzip shine.zip
+#  RUN cp -rvf shine/* .
+#  RUN rm -rf shine shine.zip
+#  CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
+#  EXPOSE 80
