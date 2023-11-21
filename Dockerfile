@@ -1,6 +1,7 @@
-FROM  centos:latest
+FROM  centos:8
 MAINTAINER prashantgaigol21@gmail.com
-RUN yum install -y httpd zip unzip
+RUN yum install -y epel-release && \
+    yum install -y httpd zip unzip
 COPY photogenic.zip /var/www/html/
 WORKDIR /var/www/html/
 RUN unzip photogenic.zip
