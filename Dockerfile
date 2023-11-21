@@ -1,7 +1,7 @@
 FROM centos:latest
 
 LABEL maintainer="prashantgaigol21@gmail.com"
-
+RUN yum makecache
 RUN yum install -y httpd zip unzip \
     && yum clean all \
     && rm -rf /var/cache/yum
